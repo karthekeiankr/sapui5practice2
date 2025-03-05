@@ -1,0 +1,35 @@
+{
+    "amount":[
+        { "id": 1, "name": "John Doe", "date": "2025-02-01", "credit": 1000000, "debit": "", "balance": 500 },
+        { "id": 2, "name": "Jane Smith", "date": "2025-02-02", "credit": 1500, "debit": 200, "balance": 1300 },
+        { "id": 3, "name": "Michael Brown", "date": "2025-02-03", "credit": 800, "debit": 300, "balance": 500 },
+        { "id": 4, "name": "Emily Davis", "date": "2025-02-04", "credit": 1200, "debit": 400, "balance": 800 },
+        { "id": 5, "name": "Chris Johnson", "date": "2025-02-05", "credit": 900, "debit": 100, "balance": 800 },
+        { "id": 6, "name": "Patricia Lee", "date": "2025-02-06", "credit": 1100, "debit": 700, "balance": 400 },
+        { "id": 7, "name": "James Wilson", "date": "2025-02-07", "credit": 1300, "debit": 200, "balance": 1100 },
+        { "id": 8, "name": "Linda Harris", "date": "2025-02-08", "credit": 700, "debit": 50, "balance": 650 },
+        { "id": 9, "name": "Robert Clark", "date": "2025-02-09", "credit": 1600, "debit": 500, "balance": 1100 },
+        { "id": 10, "name": "Maria Rodriguez", "date": "2025-02-10", "credit": 500, "debit": 150, "balance": 350 },
+        { "id": 11, "name": "David Lewis", "date": "2025-02-11", "credit": 2000, "debit": 800, "balance": 1200 },
+        { "id": 12, "name": "Susan Walker", "date": "2025-02-12", "credit": 950, "debit": 350, "balance": 600 },
+        { "id": 13, "name": "Charles Allen", "date": "2025-02-13", "credit": 1300, "debit": 400, "balance": 900 },
+        { "id": 14, "name": "Nancy Young", "date": "2025-02-14", "credit": 800, "debit": 200, "balance": 600 },
+        { "id": 15, "name": "Karen King", "date": "2025-02-15", "credit": 1100, "debit": 300, "balance": 800 },
+        { "id": 16, "name": "Paul Scott", "date": "2025-02-16", "credit": 1000, "debit": 450, "balance": 550 },
+        { "id": 17, "name": "Betty Green", "date": "2025-02-17", "credit": 1200, "debit": 500, "balance": 700 },
+        { "id": 18, "name": "Daniel Adams", "date": "2025-02-18", "credit": 950, "debit": 100, "balance": 850 },
+        { "id": 19, "name": "Matthew Nelson", "date": "2025-02-19", "credit": 1350, "debit": 550, "balance": 800 },
+        { "id": 20, "name": "Sarah Carter", "date": "2025-02-20", "credit": 600, "debit": 150, "balance": 450 },
+        { "id": 21, "name": "William Mitchell", "date": "2025-02-21", "credit": 700, "debit": 400, "balance": 300 },
+        { "id": 22, "name": "Deborah Perez", "date": "2025-02-22", "credit": 1100, "debit": 250, "balance": 850 },
+        { "id": 23, "name": "Joseph Hall", "date": "2025-02-23", "credit": 1200, "debit": 500, "balance": 700 },
+        { "id": 24, "name": "Margaret Moore", "date": "2025-02-24", "credit": 1300, "debit": 300, "balance": 1000 },
+        { "id": 25, "name": "Edward Taylor", "date": "2025-02-25", "credit": 1500, "debit": 600, "balance": 900 },
+        { "id": 26, "name": "Dorothy Anderson", "date": "2025-02-26", "credit": 800, "debit": 200, "balance": 600 },
+        { "id": 27, "name": "Henry Thomas", "date": "2025-02-27", "credit": 1000, "debit": 100, "balance": 900 },
+        { "id": 28, "name": "Sandra White", "date": "2025-02-28", "credit": 700, "debit": 250, "balance": 450 },
+        { "id": 29, "name": "Steven Harris", "date": "2025-03-01", "credit": 900, "debit": 500, "balance": 400 },
+        { "id": 30, "name": "Jessica Moore", "date": "2025-03-02", "credit": 1200, "debit": 100, "balance": 1100 }
+    ]
+   
+}

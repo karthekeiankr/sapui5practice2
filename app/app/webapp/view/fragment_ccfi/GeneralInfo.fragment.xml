@@ -1,0 +1,89 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:ca="sap.ca.ui.charts"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:ushell="sap.ushell.ui"
+	xmlns:ca.ui="sap.ca.ui" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+			<f:FormContainer>
+				<f:title>
+					<Title xmlns="sap.ui.core" text="{i18n>G_HEADER_TABLE}" icon=""
+						level="Auto" emphasized="false" />
+				</f:title>
+				<f:formElements>
+					<!--<f:FormElement-->
+					<!--	label="{/#PaymentDetailTransData/LiquidityItem/@sap:label}">-->
+					<!--	<f:fields>-->
+					<!--		<Text text="{Transaction>/LiquidityItem}" wrapping="true" />-->
+					<!--	</f:fields>-->
+					<!--</f:FormElement>-->
+					<!--<f:FormElement-->
+					<!--	label="{/#PaymentDetailTransData/LiquidityItemName/@sap:label}">-->
+					<!--	<f:fields>-->
+					<!--		<Text text="{Transaction>/LiquidityItemName}" wrapping="true" />-->
+					<!--	</f:fields>-->
+					<!--</f:FormElement>-->
+					<f:FormElement label="{/#PaymentDetailTransData/SourceApplication/@sap:label}">
+						<f:fields>
+							<Text
+								text="{parts:[{path:'Transaction>/SourceApplication'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatSourceApp'}"
+								wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailItem/CertaintyLevel/@sap:label}">
+						<f:fields>
+							<Text
+								text="{parts:[{path:'Transaction>/CertaintyLevel'}]}"
+								wrapping="true" />
+						</f:fields>
+					</f:FormElement> 
+					<f:FormElement
+						label="{/#PaymentDetailTransData/PlanningLevel/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PlanningLevel}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{/#PaymentDetailTransData/PlanningLevelDescription/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PlanningLevelDescription}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PlanningGroup/@sap:label}">
+        				<f:fields>
+        					<Text text="{Transaction>/PlanningGroup}" wrapping="true" />
+        				</f:fields>
+        			</f:FormElement>
+        			<f:FormElement label="{/#PaymentDetailTransData/PlanningGroupText/@sap:label}">
+        				<f:fields>
+        					<Text text="{Transaction>/PlanningGroupText}" wrapping="true" />
+        				</f:fields>
+        			</f:FormElement>
+        			<f:FormElement label="{/#PaymentDetailTransData/HouseBank/@sap:label}">
+        				<f:fields>
+        					<Text text="{Transaction>/HouseBank}" wrapping="true" />
+        				</f:fields>
+        			</f:FormElement>
+        			<f:FormElement label="{/#PaymentDetailTransData/HouseBankAccount/@sap:label}">
+        				<f:fields>
+        					<Text text="{Transaction>/HouseBankAccount}" wrapping="true" />
+        				</f:fields>
+        			</f:FormElement>
+					<f:FormElement
+						label="{/#PaymentDetailTransData/CreatedByUser/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/CreatedByUser}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{/#PaymentDetailTransData/LineItemText/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/LineItemText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<core:ExtensionPoint name="extPaymentDetailInfo" />
+				</f:formElements>
+			</f:FormContainer>
+</core:FragmentDefinition>

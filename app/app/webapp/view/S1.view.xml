@@ -1,0 +1,496 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="fin.cash.flow.analyzer.controller.S1" xmlns="sap.m" 
+xmlns:smartlink="sap.ui.comp.navpopover" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+xmlns:semantic="sap.m.semantic" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:table="sap.ui.table"
+xmlns:smarttable="sap.ui.comp.smarttable" xmlns:footerbar="sap.ushell.ui.footerbar"	
+xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" class="finCentralListreportReuse">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistViewTitle}" enableScrolling="false">
+		<semantic:content>
+			<VBox fitContainer="true">    
+				<smartfilterbar:SmartFilterBar 
+							id="fin.cash.paymentdetail.display.smartFilterBar" entityType="PaymentDetailItem"
+							search="onSearchButtonPressed" reset="onReset" initialise="onInitSmartFilterBar"
+							persistencyKey="fin.cash.paymentdetail.display.view.S1">
+							<smartfilterbar:customData>
+								<core:CustomData key="defaultDropDownDisplayBehaviour"
+									value="descriptionOnly" />
+								<core:CustomData key="defaultTokenDisplayBehaviour"
+									value="idAndDescription" />
+								<core:CustomData key="dateFormatSettings"
+									value='\{"UTC":true,"style":"short"\}' />
+							</smartfilterbar:customData>
+							<smartfilterbar:layoutData>
+								<FlexItemData shrinkFactor="0"/>
+							</smartfilterbar:layoutData>
+							<smartfilterbar:controlConfiguration> 
+								<smartfilterbar:ControlConfiguration  
+									index="0" key="ValueDate"  groupId="_BASIC" hasValueHelpDialog="false"
+									conditionType="sap.ui.comp.config.condition.DateRangeType"
+									hasTypeAhead="false" mandatory="mandatory">
+								</smartfilterbar:ControlConfiguration> 
+								<smartfilterbar:ControlConfiguration 
+									index="1" key="CompanyCode" groupId="_BASIC" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly" >
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="2" key="Currency" groupId="_BASIC" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="3" key="BankAccountNumber" groupId="_BASIC" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="4" key="PlanningLevel" groupId="_BASIC" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration 
+									index="5" key="CertaintyLevel" groupId="_BASIC" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="6" key="BankAccountCurrency" groupId="DocumentGroup" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>	
+								<smartfilterbar:ControlConfiguration
+									index="7" key="LiquidityItemName" groupId="DocumentGroup" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly" >
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="8" key="InflowIndicator" groupId="DocumentGroup" controlType="dropDownList"
+									hasValueHelpDialog="false">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="9" key="Bank" groupId="DocumentGroup" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+							 	<smartfilterbar:ControlConfiguration
+									index="10" key="PaymentMethodCode" groupId="DocumentGroup" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="11" key="BankCountryKey" groupId="DocumentGroup" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly" >
+								</smartfilterbar:ControlConfiguration> 
+								<smartfilterbar:ControlConfiguration
+									index="12" key="CashPlanningGroup" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="13" key="Vendor" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="14" key="Customer" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="15" key="BusinessPartner" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="16" key="GLAccount" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+							
+								<smartfilterbar:ControlConfiguration
+									index="17" key="SummarizationGroup" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="18" key="SummarizationTerm" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="19" key="HouseBank" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="20" key="HouseBankAccount" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="21" key="DocType" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								
+								<smartfilterbar:ControlConfiguration
+									index="22" key="PaymentBatch" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="23" key="PaymentBatchItem" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration> 
+								<smartfilterbar:ControlConfiguration
+									index="24" key="PaymentBatchStatusCode" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+								<smartfilterbar:ControlConfiguration
+									index="25" key="PaymentBatchItemStatusCode" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration> 
+								<smartfilterbar:ControlConfiguration
+									index="26" key="UserName" groupId="DocumentGroup" controlType="input" preventInitialDataFetchInValueHelpDialog="false" 
+									displayBehaviour="idOnly">
+								</smartfilterbar:ControlConfiguration>
+							</smartfilterbar:controlConfiguration>
+							<smartfilterbar:groupConfiguration>
+								<smartfilterbar:GroupConfiguration
+									key="DocumentGroup" label="{i18n>DYN_SEL_GRP_A}" />
+							</smartfilterbar:groupConfiguration>
+						</smartfilterbar:SmartFilterBar>  
+		        <smarttable:SmartTable id="fin.cash.paymentdetail.display.TableDetailSmart" entitySet="PaymentDetailItemSet" 
+		                smartFilterId="fin.cash.paymentdetail.display.smartFilterBar" header="{i18n>HEADER_TABLE_TITLE}"
+						tableType="AnalyticalTable" class="sapFioriListReportSmartTable"  
+						ignoredFields="GeneratedId,Cnt,CertaintyLevel,BankStatementShortKey,BankStatementItem" 
+						ignoreFromPersonalisation="IDNumber,OriginSystem,OriginTransactionId,OriginApplication,OriginDocument,OriginFlowId"
+						persistencyKey="fin.cash.paymentdetail.display.TablePersoKey"
+						useTablePersonalisation = "true" useVariantManagement="true"> 
+		            	<smarttable:customData>
+								<core:CustomData key="dateFormatSettings"
+									value='\{"UTC":true,"style":"short"\}' />
+						</smarttable:customData>			
+		            	<smarttable:layoutData>
+							<FlexItemData growFactor="1" baseSize="0%"/> 
+						</smarttable:layoutData>
+						<table:AnalyticalTable id="fin.cash.paymentdetail.display.TableDetail" 
+							visibleRowCountMode="Auto" selectionMode="Single" selectionBehavior="Row"
+							showColumnVisibilityMenu="false" allowColumnReordering="true"
+							enableColumnFreeze="true" enableCellFilter="true">
+							<table:columns id="PlColumns">
+								<!--Invisible Key Fields -->
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "IDNumber"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="IDNumber">
+									<Label text="{/#PaymentDetailItem/IDNumber/@sap:label}"></Label>
+									<table:template>
+										<Text text="{IDNumber}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "OriginSystem"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="OriginSystem">
+									<Label text="{/#PaymentDetailItem/OriginSystem/@sap:label}"></Label>
+									<table:template>
+										<Text text="{OriginSystem}" />
+									</table:template>
+								</table:AnalyticalColumn>  
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "OriginTransactionId"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="OriginTransactionId">
+									<Label text="{/#PaymentDetailItem/OriginTransactionId/@sap:label}"></Label>
+									<table:template>
+										<Text text="{OriginTransactionId}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "OriginApplication"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="OriginApplication">
+									<Label text="{/#PaymentDetailItem/OriginApplication/@sap:label}"></Label>
+									<table:template>
+										<Text text="{OriginApplication}" />
+									</table:template>
+								</table:AnalyticalColumn> 
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "OriginDocument"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="OriginDocument">
+									<Label text="{/#PaymentDetailItem/OriginDocument/@sap:label}"></Label>
+									<table:template>
+										<Text text="{OriginDocument}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+							      customData:p13nData='\{"columnKey": "OriginFlowId"}' summed = "false"
+									inResult="true" visible="false" width="150px" leadingProperty="OriginFlowId">
+									<Label text="{/#PaymentDetailItem/OriginFlowId/@sap:label}"></Label>
+									<table:template>
+										<Text text="{OriginFlowId}" />
+									</table:template>
+								</table:AnalyticalColumn> 
+							<!--Visible Columns -->
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "BankAccountNumber"}' summed = "false"
+									leadingProperty="BankAccountNumber" sortProperty="BankAccountNumber"							
+									inResult="true" visible="false" width="130px">
+									<Label text="{/#PaymentDetailItem/BankAccountNumber/@sap:label}"></Label>
+									<table:template>
+										<Text text="{BankAccountNumber}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+								    customData:p13nData='\{"columnKey": "SourceApplicationIcon"}' summed = "false"
+								    leadingProperty="SourceApplication" sortProperty="SourceApplication"
+									inResult="false" hAlign="Center" width="5em" autoResizable="true" >
+									<Label text="{/#PaymentDetailItem/SourceApplication/@sap:label}"></Label>								
+									<table:template>
+										<core:Icon size="16px" decorative="false"
+												src="{parts:[{path:'SourceApplication'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatSourceAppIcon'}"
+												tooltip="{parts:[{path:'SourceApplication'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatSourceApp'}"
+												alt="{parts:[{path:'SourceApplication'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatSourceApp'}">
+										</core:Icon>
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "SourceApplication"}' summed = "false"
+									leadingProperty="SourceApplication" sortProperty="SourceApplication"
+									inResult="false" width="220px" visible="true">
+									<Label text="{i18n>SOURCE_APP_DESC}"></Label>
+									<table:template>
+										<Text
+											text="{parts:[{path:'SourceApplication'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatSourceApp'}"
+											wrapping="false" />
+									</table:template>							
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+								    customData:p13nData='\{"columnKey": "LiquidityItemDescription"}' summed = "false"
+									leadingProperty="LiquidityItemDescription" sortProperty="LiquidityItemDescription"
+									inResult="false" width="250px" tooltip="{parts: [{path:'/#PaymentDetailItem/LiquidityItemDescription/@sap:quickinfo'}, {path:'/#PaymentDetailItem/LiquidityItemDescription/@sap:label'}] }">															
+									<Label
+										text="{/#PaymentDetailItem/LiquidityItemDescription/@sap:label}"></Label>
+									<table:template>
+										<Text text="{LiquidityItemDescription}" wrapping="false" />
+									</table:template>							
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "CompanyCode"}'  summed = "false"
+									sortProperty="CompanyCode" filterProperty="CompanyCode" leadingProperty="CompanyCode"
+									inResult="false" visible="true" width="120px">
+									<Label text="{/#PaymentDetailItem/CompanyCode/@sap:label}"></Label>
+									<table:template>
+										<Label text="{CompanyCode}" />
+									</table:template>
+								</table:AnalyticalColumn> 
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "CompanyCodeName"}' summed = "false"
+									inResult="false" sortProperty="CompanyCodeName" width="150px" leadingProperty="CompanyCodeName">
+									<Label text="{/#PaymentDetailItem/CompanyCodeName/@sap:label}"></Label>
+									<table:template>
+										<Label text="{CompanyCodeName}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "ValueDate"}' summed = "false"
+									leadingProperty="ValueDate" filterProperty="ValueDate" sorted="true" sortProperty="ValueDate"
+									inResult="false" sortOrder="Descending" filterType="sap.ui.model.type.Date" width="110px">
+									<Label text="{/#PaymentDetailItem/ValueDate/@sap:label}"></Label>
+									<table:template>
+										<Text text="{parts:[{path:'ValueDate'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatDate'}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn 
+									customData:p13nData='\{"columnKey": "AmountInTransactionCurrency"}' 
+									leadingProperty="AmountInTransactionCurrency" sortProperty="AmountInTransactionCurrency" summed = "true"
+									inResult="false" hAlign="End"  width="150px">
+									<Label text="{/#PaymentDetailItem/AmountInTransactionCurrency/@sap:label}" textAlign="Right" textDirection="LTR"></Label>
+									<table:template>							
+										<Link press="onNavigationToDetail"
+											text="{parts:[{path:'AmountInTransactionCurrency'}, {path:'Currency'},{path: 'Scaling>/scaling'}, {path: 'Scaling>/decimals'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatAmount'}"
+											textDirection="LTR" visible="true" wrapping="false"
+											textAlign="Right" width="100%" emphasized="true" />
+									</table:template>							
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "Currency"}' summed = "false"
+									inResult="false" leadingProperty="Currency" filterProperty="Currency" sortProperty="Currency" width="120px">
+									<Label text="{/#PaymentDetailItem/Currency/@sap:label}"></Label>
+									<table:template>
+										<Text text="{Currency}" />
+									</table:template>
+								</table:AnalyticalColumn>
+						  	   <table:AnalyticalColumn 
+									customData:p13nData='\{"columnKey": "AmountInBankAccountCurrency"}' 
+									leadingProperty="AmountInBankAccountCurrency" sortProperty="AmountInBankAccountCurrency" summed = "true"
+									inResult="false" hAlign="End"  width="150px">
+									<Label text="{/#PaymentDetailItem/AmountInBankAccountCurrency/@sap:label}"  textAlign="Right" textDirection="LTR"></Label>
+									<table:template>							
+										<Link press="onNavigationToDetail"
+											text="{parts:[{path:'AmountInBankAccountCurrency'}, {path:'BankAccountCurrency'},{path: 'Scaling>/scaling'}, {path: 'Scaling>/decimals'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatAmount'}"
+											textDirection="LTR" visible="true" wrapping="false"
+											textAlign="Right" width="100%" emphasized="true" />
+									</table:template>							
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "BankAccountCurrency"}' summed = "false"
+									leadingProperty="BankAccountCurrency" filterProperty="BankAccountCurrency" sortProperty="BankAccountCurrency"
+									inResult="false" visible="true" width="150px">
+									<Label text="{/#PaymentDetailItem/BankAccountCurrency/@sap:label}"></Label>
+									<table:template>
+										<Text text="{BankAccountCurrency}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn> 
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "BankAccount"}' summed = "false"
+									leadingProperty="BankAccount" filterProperty="BankAccount" sortProperty="BankAccount"
+									inResult="false" visible="true" width="130px">
+									<Label text="{/#PaymentDetailItem/BankAccount/@sap:label}"></Label>
+									<table:template>
+										<Text text="{BankAccount}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>						
+								<table:AnalyticalColumn  
+									inResult="false" customData:p13nData='\{"columnKey": "HouseBankAccountDescription"}' summed = "false"
+									leadingProperty="HouseBankAccountDescription" sortProperty="HouseBankAccountDescription"
+									width="200px">
+									<Label text="{/#PaymentDetailItem/HouseBankAccountDescription/@sap:label}"></Label>
+									<table:template>
+										<Text text="{HouseBankAccountDescription}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn> 
+								
+								<!--END Fields for AR/AP -->						
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "AccountingDocument"}' summed = "false"
+									leadingProperty="AccountingDocument" sortProperty="AccountingDocument"
+									inResult="false" visible="true" width="140px">
+									<Label text="{/#PaymentDetailItem/AccountingDocument/@sap:label}"></Label>
+									<table:template>
+										<Text text="{AccountingDocument}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "AccountingDocumentItem"}' summed = "false"
+									leadingProperty="AccountingDocumentItem" sortProperty="AccountingDocumentItem"
+									inResult="false" visible="true" width="90px">
+									<Label text="{/#PaymentDetailItem/AccountingDocumentItem/@sap:label}"></Label>
+									<table:template>
+										<Text text="{AccountingDocumentItem}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+						 		    	
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "BusinessPartner"}' summed = "false"
+									leadingProperty="BusinessPartner" filterProperty="BusinessPartner" sortProperty="BusinessPartner"
+									inResult="false" visible="true" width="130px">
+									<Label text="{/#PaymentDetailItem/BusinessPartner/@sap:label}"></Label>
+									<table:template>
+										<Text text="{BusinessPartner}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "Customer"}' summed = "false"
+									leadingProperty="Customer" filterProperty="Customer" sortProperty="Customer"
+									inResult="false" visible="true" width="120px">
+									<Label text="{/#PaymentDetailItem/Customer/@sap:label}"></Label>
+									<table:template>
+										<Text text="{Customer}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "CustomerName"}' summed = "false"
+									leadingProperty="CustomerName" sortProperty="CustomerName"
+									inResult="false" visible="true" width="150px">
+									<Label text="{/#PaymentDetailItem/CustomerName/@sap:label}"></Label>
+									<table:template>
+										<Text text="{CustomerName}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "FiscalYear"}' summed = "false"
+									leadingProperty="FiscalYear" sortProperty="FiscalYear"
+									inResult="false" visible="true" width="100px">
+									<Label text="{/#PaymentDetailItem/FiscalYear/@sap:label}"></Label>
+									<table:template>
+										<Text text="{FiscalYear}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "HouseBank"}' summed = "false"
+									leadingProperty="HouseBank" sortProperty="HouseBank"
+									inResult="false" visible="true" width="100px">
+									<Label text="{/#PaymentDetailItem/HouseBank/@sap:label}"></Label>
+									<table:template>
+										<Text text="{HouseBank}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "HouseBankAccount"}' summed = "false"
+									leadingProperty="HouseBankAccount" sortProperty="HouseBankAccount"
+									inResult="false" visible="true" width="150px">
+									<Label text="{/#PaymentDetailItem/HouseBankAccount/@sap:label}"></Label>
+									<table:template>
+										<Text text="{HouseBankAccount}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "PaymentBatch"}' summed = "false"
+									leadingProperty="PaymentBatch" sortProperty="PaymentBatch"
+									inResult="false" visible="true" width="120px">
+									<Label text="{/#PaymentDetailItem/PaymentBatch/@sap:label}"></Label>
+									<table:template>
+										<Text text="{PaymentBatch}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "PaymentBatchItem"}' summed = "false"
+									leadingProperty="PaymentBatchItem" sortProperty="PaymentBatchItem"
+									inResult="false" visible="true" width="150px">
+									<Label text="{/#PaymentDetailItem/PaymentBatchItem/@sap:label}"></Label>
+									<table:template>
+										<Text text="{PaymentBatchItem}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "TradingPartner"}' summed = "false"
+									leadingProperty="TradingPartner" sortProperty="TradingPartner"
+									inResult="false" visible="true" width="130px">
+									<Label text="{/#PaymentDetailItem/TradingPartner/@sap:label}"></Label>
+									<table:template>
+										<Text text="{TradingPartner}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "Vendor"}' summed = "false"
+									leadingProperty="Vendor" filterProperty="Vendor" sortProperty="Vendor"
+									inResult="false" visible="true" width="120px">
+									<Label text="{/#PaymentDetailItem/Vendor/@sap:label}"></Label>
+									<table:template>
+										<Text text="{Vendor}" wrapping="false" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "VendorName"}' summed = "false"
+									leadingProperty="VendorName" sortProperty="VendorName"
+									inResult="false" visible="true" width="150px">
+									<Label text="{/#PaymentDetailItem/VendorName/@sap:label}"></Label>
+									<table:template>
+										<Text text="{VendorName}" wrapping="false" /> 
+									</table:template>
+								</table:AnalyticalColumn>
+								<table:AnalyticalColumn  
+									customData:p13nData='\{"columnKey": "DocumentDate"}' summed = "false"
+									leadingProperty="DocumentDate" sortProperty="DocumentDate"
+									inResult="false" width="110px">
+									<Label text="{/#PaymentDetailItem/DocumentDate/@sap:label}"></Label>
+									<table:template>
+										<Text text="{parts:[{path:'DocumentDate'}], formatter:'fin.cash.flow.analyzer.util.Formatter.formatDate'}" />
+									</table:template>
+								</table:AnalyticalColumn>
+								<!-- With this extension point you're able to extend at the end of 
+									the line items table, i.e. insert columns -->
+								<core:ExtensionPoint
+									name="fin.cash.paymentdetail.display.ExtensionPointTableColumnEnd"></core:ExtensionPoint>
+							</table:columns>
+							<table:layoutData>
+								<FlexItemData growFactor="1"
+									styleClass="sapFioriListReportTable" />
+							</table:layoutData>
+						</table:AnalyticalTable>
+						</smarttable:SmartTable>
+			</VBox> 
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{worklistView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:FullscreenPage>
+</mvc:View>

@@ -1,0 +1,64 @@
+<mvc:View controllerName="project4.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page id="page" title="{i18n>title}">
+        
+        <!-- Search Fields -->
+        <Toolbar>
+            <SearchField id="searchId" placeholder="Search by ID" />
+            <SearchField id="searchName" placeholder="Search by Name" />
+            <DateRangeSelection id="searchDateRange" displayFormat="yyyy-MM-dd" placeholder="Select Date Range" />
+            <Button text="GO" press="onSearch"></Button>
+        </Toolbar>
+
+        <!-- Wrapping Table and Footer Inside VBox -->
+        <VBox>
+            <!-- Table with Header -->
+            <Table id="table"
+                items="{data>/amount}"
+                inset="false"
+                mode="SingleSelectMaster">
+                
+                <!-- Table Header -->
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Orders" />
+                        <ToolbarSpacer/>
+                        <Button text="Download" icon="sap-icon://download" press="downloadpdf"/>
+                    </Toolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column><Text text="ID" /></Column>
+                    <Column><Text text="Name" /></Column>
+                    <Column><Text text="Date" /></Column>
+                    <Column><Text text="Debit" /></Column>
+                    <Column><Text text="Credit" /></Column>
+                    <Column><Text text="Balance" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{data>id}" />
+                            <Text text="{data>name}" />
+                            <Text text="{data>date}" />
+                            <Text text="{data>debit}" />
+                            <Text text="{data>credit}" />
+                            <Text text="{data>balance}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <!-- Footer Section (Placed Below the Table) -->
+            <HBox  class="footer-box">
+                <Title text="Total balance's transaction: " />
+                <Text id="totalValue" text="{totalModel>/total}" />
+                
+            </HBox>
+        </VBox>
+        
+    </Page>
+</mvc:View>

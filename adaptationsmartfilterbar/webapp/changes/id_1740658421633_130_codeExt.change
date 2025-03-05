@@ -1,0 +1,34 @@
+{
+  "fileName": "id_1740658421633_130_codeExt",
+  "fileType": "change",
+  "changeType": "codeExt",
+  "moduleName": "customer/adaptationsmartfilterbar/changes/coding/filter",
+  "reference": "customer.adaptationsmartfilterbar",
+  "packageName": "$TMP",
+  "content": {
+    "codeRef": "coding/filter.js"
+  },
+  "selector": {
+    "controllerName": "sap.suite.ui.generic.template.ListReport.view.ListReport"
+  },
+  "layer": "CUSTOMER_BASE",
+  "texts": {},
+  "namespace": "apps/mdm.md.customer.manage/adapt/customer.adaptationsmartfilterbar/changes/",
+  "projectId": "customer.adaptationsmartfilterbar",
+  "creation": "2025-02-27T12:13:41.634Z",
+  "originalLanguage": "EN",
+  "support": {
+    "generator": "Change.createInitialFileContent",
+    "service": "",
+    "user": "",
+    "sapui5Version": "1.84.49",
+    "sourceChangeFileName": "",
+    "compositeCommand": "",
+    "command": ""
+  },
+  "oDataInformation": {},
+  "dependentSelector": {},
+  "jsOnly": false,
+  "variantReference": "",
+  "appDescriptorChange": false
+}

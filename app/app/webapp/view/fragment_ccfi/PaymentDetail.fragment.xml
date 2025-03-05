@@ -1,0 +1,63 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:ca="sap.ca.ui.charts"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:ushell="sap.ushell.ui"
+	xmlns:ca.ui="sap.ca.ui" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+			<f:FormContainer>
+		       <f:title>
+			    <Title xmlns="sap.ui.core" text="{i18n>PD_HEADER_TABLE}"  />
+		       </f:title>			
+				<f:formElements>	
+					<f:FormElement label="{/#PaymentDetailTransData/Bank/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/Bank}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>				
+					<f:FormElement label="{/#HouseBank/BankCountry/@sap:label}">
+						<f:fields>
+							<Text text="{Bank>/BankCountry}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#HouseBank/SWIFT/@sap:label}">
+						<f:fields>
+							<Text text="{Bank>/SWIFT}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>	
+					<f:FormElement label="{/#HouseBank/BankName/@sap:label}">
+						<f:fields>
+							<Text text="{Bank>/BankName}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#HouseBank/HouseBankID/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/HouseBank}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#HouseBank/BankAccountID/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/HouseBankAccount}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>					
+					<f:FormElement label="{/#HouseBank/IBAN/@sap:label}">
+						<f:fields>
+							<Text text="{Bank>/IBAN}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#HouseBank/Description/@sap:label}">
+						<f:fields>
+							<Link text="{Bank>/Description}" press="handleBankPress" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#HouseBank/AccountNumber/@sap:label}">
+						<f:fields>
+							<Text text="{Bank>/AccountNumber}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<core:ExtensionPoint name="extPaymentDetailInfo" />
+				</f:formElements>
+			</f:FormContainer>
+</core:FragmentDefinition>

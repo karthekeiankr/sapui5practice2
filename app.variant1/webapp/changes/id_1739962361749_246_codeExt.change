@@ -1,0 +1,34 @@
+{
+  "fileName": "id_1739962361749_246_codeExt",
+  "fileType": "change",
+  "changeType": "codeExt",
+  "moduleName": "customer/app/variant1/changes/coding/city",
+  "reference": "customer.app.variant1",
+  "packageName": "$TMP",
+  "content": {
+    "codeRef": "coding/city.js"
+  },
+  "selector": {
+    "controllerName": "sap.suite.ui.generic.template.ListReport.view.ListReport"
+  },
+  "layer": "CUSTOMER_BASE",
+  "texts": {},
+  "namespace": "apps/mdm.md.customer.manage/adapt/customer.app.variant1/changes/",
+  "projectId": "customer.app.variant1",
+  "creation": "2025-02-19T10:52:41.751Z",
+  "originalLanguage": "EN",
+  "support": {
+    "generator": "@sap-ux/control-property-editor",
+    "service": "",
+    "user": "",
+    "sapui5Version": "1.84.49",
+    "sourceChangeFileName": "",
+    "compositeCommand": "",
+    "command": ""
+  },
+  "oDataInformation": {},
+  "dependentSelector": {},
+  "jsOnly": false,
+  "variantReference": "",
+  "appDescriptorChange": false
+}

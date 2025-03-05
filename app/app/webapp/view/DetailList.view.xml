@@ -1,0 +1,583 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="fin.cash.flow.analyzer.controller.DetailList" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:table="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	class="finCentralListreportReuse" xmlns:layout="sap.ui.layout" xmlns:f="sap.f" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:variants="sap.ui.comp.smartvariants">
+	<f:DynamicPage id="page" preserveHeaderStateOnScroll="true" fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{selRow>/Amount}"/>
+				</f:heading>
+				<f:actions>
+					<Button id="ShareButton" icon="sap-icon://action" tooltip="{i18n>SHARE_BUTTON}" type="Transparent" press="onShareButtonPressed"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<layout:HorizontalLayout allowWrapping="true">
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<!--<HBox>
+							<Title id="idAmountLabel" text="{i18n>AMUONTLABEL}"/>
+						</HBox>
+						<HBox class="sapUiTinyMarginBottom">
+							<ObjectStatus id="idAmount" text="{selRow>/Amount}" class="sapMObjectStatusLarge"/>
+						</HBox>-->
+						<HBox id="idFlowDirection" class="sapUiTinyMarginBottom">
+							<ObjectStatus id="idFlowDirectionText" title="{i18n>FLOW_DIRECTION}" text="{selRow>/DirectionText}" state="{selRow>/DirectionState}"/>
+						</HBox>
+						<HBox id="idSelDate" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idSelDateText" title="{selRow>/SelDateLabel}" text="{selRow>/SelDate}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idCompanyCode" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idCompanyCodeText" title="{i18n>COMPANYCODELABEL}" text="{selRow>/FullCompanyCode}"/>
+						</HBox>
+						<HBox id="idCertaintyLevel" class="sapUiTinyMarginBottom">
+							<ObjectStatus id="idCertaintyLevelText" title="{i18n>CERTAINTY_LEVEL}" text="{selRow>/CertaintyLevel}"/>
+						</HBox>
+						<HBox id="idBankAccount" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idBankAccountText" title="{i18n>BANKACCOUNTLABEL}" text="{selRow>/FullBankAccount}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idPlanningLevel" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idPlanningLevelText" title="{i18n>PLANNING_LEVEL}" text="{selRow>/FullPlanningLevel}"/>
+						</HBox>
+						<HBox id="idPlanningGroup" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idPlanningGroupText" title="{i18n>PLANNING_GROUP}" text="{selRow>/FullPlanningGroup}"/>
+						</HBox>
+						<HBox id="idLiquidityItem" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idLiquidityItemText" title="{i18n>LIQUIDITYITEM}" text="{selRow>/FullLiquidityItem}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idHouseBank" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idHouseBankText" title="{i18n>HOUSE_BANK}" text="{selRow>/HouseBank}"/>
+						</HBox>
+						<HBox id="idHouseBankAccount" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idHouseBankAccountText" title="{i18n>HOUSE_BANK_ACCOUNT}" text="{selRow>/HouseBankAccount}"/>
+						</HBox>
+						<HBox id="idGLAccount" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idGLAccountText" title="{i18n>GL_ACCOUNT}" text="{selRow>/GLAccount}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idBank" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idBankText" title="{i18n>BANK_KEY}" text="{selRow>/Bank}"/>
+						</HBox>
+						<HBox id="idBankCountry" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idBankCountryText" title="{i18n>BANK_COUNTRY}" text="{selRow>/BankCountry}"/>
+						</HBox>
+						<HBox id="idBankGroup" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idBankGroupText" title="{i18n>BANK_GROUP}" text="{selRow>/FullBankGroup}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idProfitCenter" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idProfitCenterText" title="{i18n>PROFITCENTER}" text="{selRow>/ProfitCenter}"/>
+						</HBox>
+						<HBox id="idSegment" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idSegmentText" title="{i18n>SEGMENT}" text="{selRow>/Segment}"/>
+						</HBox>
+						<HBox id="idTradingPartner" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idTradingPartnerText" title="{i18n>TRADING_PARTNER}" text="{selRow>/TradingPartner}"/>
+						</HBox>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<HBox id="idBusinessArea" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idBusinessAreaText" title="{i18n>BUSINESSAREA}" text="{selRow>/BusinessArea}"/>
+						</HBox>
+						<HBox id="idPaymentMethod" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idPaymentMethodText" title="{i18n>PAYMENT_METHOD}" text="{selRow>/PaymentMethod}"/>
+						</HBox>
+						<HBox id="idSummarizationTerm" class="sapUiTinyMarginBottom">
+							<ObjectAttribute id="idSummarizationTermText" title="{i18n>SUMMARIZATION_TERM}" text="{selRow>/SummarizationTerm}"/>
+						</HBox>
+					</layout:VerticalLayout>
+				</layout:HorizontalLayout>
+				<smartfilterbar:SmartFilterBar id="idDetailListSmartFilterBar" entitySet="FCLM_CFBA_LIST_VIEWSet" visible="false"
+					persistencyKey="fin.cash.flow.analyzer.view.detaillist.smartfilterbar" initialized="onInitSmartFilterBar" enableBasicSearch="true"
+					useToolbar="false">
+					<smartfilterbar:controlConfiguration>
+						<smartfilterbar:ControlConfiguration id="fAccountingDocumentLineItem" key="AccountingDocumentLineItem" index="0"
+							visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fAccountingDocumentNumber" key="AccountingDocumentNumber" index="1" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fAccountingDocumentType" key="AccountingDocumentType" index="2" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fActualDate" key="ActualDate" index="3" visibleInAdvancedArea="true"
+							conditionType="sap.ui.comp.config.condition.DateRangeType"/>
+						<smartfilterbar:ControlConfiguration id="fBank" key="Bank" index="4" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fAccountCurrency" key="AccountCurrency" index="5" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankAccountInternalID" key="BankAccountInternalID" index="6" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankAccountNumber" key="BankAccountNumber" index="7" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankAccountType" key="BankAccountType" index="8" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankCountry" key="BankCountry" index="9" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankGroup" key="BankGroup" index="34" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBusinessArea" key="BusinessArea" index="10" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBusinessPartner" key="BusinessPartner" index="11" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCashPlanningGroup" key="CashPlanningGroup" index="12" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCertaintyLevel" key="CertaintyLevel" index="13" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCompanyCode" key="CompanyCode" index="14" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCompanyCodeCurrency" key="CompanyCodeCurrency" index="15" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCostCenter" key="CostCenter" index="16" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fCustomer" key="Customer" index="17" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fDateIndicator" key="DateIndicator" index="18" filterType="single" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fDocumentItemText" key="DocumentItemText" index="19" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fDisplayPlanningLevel" key="DisplayPlanningLevel" index="23" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fFIDocumentType" key="FIDocumentType" index="53" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fFinancialAccountType" key="FinancialAccountType" index="20" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fFiscalPeriod" key="FiscalPeriod" index="21" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fFiscalYear" key="FiscalYear" index="22" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fFund" key="Fund" index="24" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fGLAccount" key="GLAccount" index="25" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fGrantID" key="GrantID" index="26" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fHouseBank" key="HouseBank" index="27" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fHouseBankAccount" key="HouseBankAccount" index="28" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fIBAN" key="IBAN" index="29" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fKeyDate" key="KeyDate" index="30" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fLiquidityItem" key="LiquidityItem" index="31" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fMaterial" key="Material" index="32" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fOverduePlanningLevel" key="OverduePlanningLevel" index="33" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fTradingPartner" key="TradingPartner" index="35" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fPaymentMethod" key="PaymentMethod" index="36" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fPlanningLevel" key="PlanningLevel" index="37" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fPostingDate" key="PostingDate" index="38" visibleInAdvancedArea="true"
+							conditionType="sap.ui.comp.config.condition.DateRangeType"/>
+						<smartfilterbar:ControlConfiguration id="fProfitCenter" key="ProfitCenter" index="39" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fReconciliationStatus" key="ReconciliationStatus" index="40" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fReleaseStatus" key="ReleaseStatus" index="41" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSegment" key="Segment" index="42" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSnapshotTimestamp" key="SnapshotTimestamp" index="43" visibleInAdvancedArea="true"
+							hasValueHelpDialog="false" hasTypeAhead="false">
+							<smartfilterbar:customControl>
+								<DateTimePicker id="dtpSnapshotTimestamp"/>
+							</smartfilterbar:customControl>
+						</smartfilterbar:ControlConfiguration>
+						<!--<smartfilterbar:ControlConfiguration id="fSourceApplication" key="SourceApplication" index="44" visibleInAdvancedArea="true"/>-->
+						<smartfilterbar:ControlConfiguration id="fSourceApplication" key="SourceApplicationText" index="44" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSourceCompanyCode" key="SourceCompanyCode" index="45" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSummarizationGroup" key="SummarizationGroup" index="46" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSummarizationTerm" key="SummarizationTerm" index="47" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSupplier" key="Supplier" index="48" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fTransactionCurrency" key="TransactionCurrency" index="49" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fValueDate" key="ValueDate" index="50" visibleInAdvancedArea="true"
+							conditionType="sap.ui.comp.config.condition.DateRangeType"/>
+						<smartfilterbar:ControlConfiguration id="fWBSElementInternalID" key="WBSElementInternalID" index="51" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fDirection" key="Direction" index="52" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fBankAccountGroup" key="BankAccountGroup" index="54" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fExRateType" key="ExRateType" index="55" visibleInAdvancedArea="true"/>
+						<smartfilterbar:ControlConfiguration id="fSortOrder" key="SortOrder" index="56" visibleInAdvancedArea="true"/>
+					</smartfilterbar:controlConfiguration>
+				</smartfilterbar:SmartFilterBar>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="idDetailListSmartTable" editable="false" enableAutoBinding="false" header="{i18n>tableHeader}"
+				entitySet="FCLM_CFBA_LIST_VIEWSet" tableType="AnalyticalTable" useExportToExcel="true" useVariantManagement="true"
+				useTablePersonalisation="true" showRowCount="true" width="auto" beforeRebindTable="onHandleBeforeRebindTable"
+				persistencyKey="fin.cash.flow.analyzer.view.detaillist.smarttable" beforeExport="onHandleBeforeExport" exportType="UI5Client"
+				class="sapFioriListReportSmartTable" smartFilterId="idDetailListSmartFilterBar"
+				ignoredFields="ExRateType,BankAccountGroup,BankGroup,SortOrder,KeyDate,SummarizationGroup,CompanyCodeName,BankAccountDescription,PaymentMethodName,GLAccountName,PlanningLevelName,CashPlanningGroupName,CustomerName,SupplierName,LiquidityItemName,CertaintyLevelName,GenerateId,ReconciliationStatus,SnapshotTimestamp,Material,ActualDate,OriginSystem,OriginApplication,OriginDocumentID,OriginFlowID,OriginTransactionID,OriginTransQualifier,OverduePlanningLevel,PlanningLevel,Direction,DateIndicator,ReleaseStatus"
+				ignoreFromPersonalisation="ExRateType,BankAccountGroup,BankGroup,SortOrder,KeyDate,SummarizationGroup,CompanyCodeName,BankAccountDescription,PaymentMethodName,GLAccountName,PlanningLevelName,CashPlanningGroupName,CustomerName,SupplierName,LiquidityItemName,CertaintyLevelName,GenerateId,ReconciliationStatus,SnapshotTimestamp,OriginSystem,OriginApplication,OriginDocumentID,OriginFlowID,OriginTransactionID,OriginTransQualifier">
+				<smartTable:customData>
+					<core:CustomData id="idCustSmartTable" key="dateFormatSettings" value='\{"UTC":true,"style":"short"\}'/>
+				</smartTable:customData>
+				<smartTable:layoutData>
+					<FlexItemData id="_idFlexItemData" growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+				<table:AnalyticalTable id="idDetailListTable" enableColumnReordering="true" showColumnVisibilityMenu="true" enableColumnFreeze="false"
+					enableCellFilter="true" selectionMode="None" visibleRowCountMode="Auto" rowActionCount="1">
+					<table:rowActionTemplate>
+						<table:RowAction>
+							<table:items>
+								<table:RowActionItem type="Navigation" press="onPressNavigation"></table:RowActionItem>
+							</table:items>
+						</table:RowAction>
+					</table:rowActionTemplate>
+					<table:columns id="idDetailListTableColumns">
+						<table:AnalyticalColumn id="idColumnOriginSystem" leadingProperty="OriginSystem" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginSystem/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginSystem" text="{OriginSystem}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginSystem" key="p13nData" value='\{"columnKey": "OriginSystem"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnOriginApplication" leadingProperty="OriginApplication" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginApplication/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginApplication" text="{OriginApplication}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginApplication" key="p13nData" value='\{"columnKey": "OriginApplication"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnOriginDocumentID" leadingProperty="OriginDocumentID" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginDocumentID/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginDocumentID" text="{OriginDocumentID}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginDocumentID" key="p13nData" value='\{"columnKey": "OriginDocumentID"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnOriginTransactionID" leadingProperty="OriginTransactionID" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginTransactionID/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginTransactionID" text="{OriginTransactionID}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginTransactionID" key="p13nData" value='\{"columnKey": "OriginTransactionID"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnOriginTransQualifier" leadingProperty="OriginTransQualifier" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginTransQualifier/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginTransQualifier" text="{OriginTransQualifier}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginTransQualifier" key="p13nData" value='\{"columnKey": "OriginTransQualifier"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnOriginFlowID" leadingProperty="OriginFlowID" visible="false" inResult="true">
+							<Label text="{/#FCLM_CFBA_LIST_VIEW/OriginFlowID/@sap:label}"/>
+							<table:template>
+								<Text id="idTextOriginFlowID" text="{OriginFlowID}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustOriginFlowID" key="p13nData" value='\{"columnKey": "OriginFlowID"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<!--<table:AnalyticalColumn id="idColumnSourceApplication" leadingProperty="SourceApplication" autoResizable="true" sorted="false"
+							filtered="false" width="250px">
+							<Label id="idLabelSourceApplication" text="{i18n>SOURCE_APP_DESC}"></Label>
+							<table:template>
+								<Text id="idTextSourceApplication" text="{parts:[{path:'SourceApplication'}], formatter:'.Formatter.formatSourceApp'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustSourceApplication" key="p13nData" value='\{"columnKey": "SourceApplication"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>-->
+						<table:AnalyticalColumn id="idColumnSourceApplication" leadingProperty="SourceApplicationText" autoResizable="true" sorted="false"
+							filtered="false" width="250px">
+							<Label id="idLabelSourceApplication" text="{i18n>SOURCE_APP_DESC}"></Label>
+							<table:template>
+								<Text id="idTextSourceApplication" text="{SourceApplicationText}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustSourceApplication" key="p13nData" value='\{"columnKey": "SourceApplicationText"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCompanyCode" leadingProperty="CompanyCode" sortProperty="CompanyCode" filterProperty="CompanyCode"
+							autoResizable="true" width="300px">
+							<Label id="idLabelCompanyCode" text="{/#FCLM_CFBA_LIST_VIEW/CompanyCode/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCompanyCode" text="{parts:[{path:'CompanyCode'},{path:'CompanyCodeName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCompanyCode" key="p13nData" value='\{"columnKey": "CompanyCode", "additionalProperty": "CompanyCodeName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCompanyCodeName" leadingProperty="CompanyCodeName" sortProperty="CompanyCodeName"
+							filterProperty="CompanyCodeName" autoResizable="true" visible="false">
+							<Label id="idLabelCompanyCodeName" text="{/#FCLM_CFBA_LIST_VIEW/CompanyCodeName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCompanyCodeName" text="{CompanyCodeName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCompanyCodeName" key="p13nData" value='\{"columnKey": "CompanyCodeName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnValueDate" leadingProperty="ValueDate" sortProperty="ValueDate" filterProperty="ValueDate"
+							filterType="sap.ui.model.type.Date" sorted="true" sortOrder="Descending" autoResizable="true" hAlign="Right" width="125px">
+							<Label id="idLabelValueDate" text="{/#FCLM_CFBA_LIST_VIEW/ValueDate/@sap:label}" textAlign="Right"></Label>
+							<table:template>
+								<Text id="idTextValueDate" text="{parts:[{path:'ValueDate'}], formatter:'.Formatter.formatDate'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustValueDate" key="p13nData" value='\{"columnKey": "ValueDate", "type": "date"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnAmountInTransactionCurrency" leadingProperty="AmountInTransactionCurrency" autoResizable="true"
+							summed="true" hAlign="Right" width="250px">
+							<Label id="idLabelAmountInTransactionCurrency" text="{/#FCLM_CFBA_LIST_VIEW/AmountInTransactionCurrency/@sap:label}" textAlign="Right"></Label>
+							<table:template>
+								<Text id="idTextAmountInTransactionCurrency"
+									text="{parts:[{path:'AmountInTransactionCurrency'},{path:'TransactionCurrency'},{path:'selRow>/Scaling'},{path:'selRow>/ViewTypeExt'}], formatter:'.Conversions.formatAmountWithBankAccountCurrency'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustAmountInTransactionCurrency" key="p13nData" value='\{"columnKey": "AmountInTransactionCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnAmountInAccountCurrency" leadingProperty="AmountInAccountCurrency" autoResizable="true"
+							summed="true" hAlign="Right" width="250px">
+							<Label id="idLabelAmountInAccountCurrency" text="{/#FCLM_CFBA_LIST_VIEW/AmountInAccountCurrency/@sap:label}" textAlign="Right"></Label>
+							<table:template>
+								<Text id="idTextAmountInAccountCurrency"
+									text="{parts:[{path:'AmountInAccountCurrency'},{path:'AccountCurrency'},{path:'selRow>/Scaling'},{path:'selRow>/ViewTypeExt'}], formatter:'.Conversions.formatAmountWithBankAccountCurrency'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustAmountInAccountCurrency" key="p13nData" value='\{"columnKey": "AmountInAccountCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnGLAccount" leadingProperty="GLAccount" sortProperty="GLAccount" filterProperty="GLAccount"
+							autoResizable="true" width="300px">
+							<Label id="idLabelGLAccount" text="{/#FCLM_CFBA_LIST_VIEW/GLAccount/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextGLAccount" text="{parts:[{path:'GLAccount'},{path:'GLAccountName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustGLAccount" key="p13nData" value='\{"columnKey": "GLAccount", "additionalProperty": "GLAccountName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnGLAccountName" leadingProperty="GLAccountName" sortProperty="GLAccountName"
+							filterProperty="GLAccountName" autoResizable="true" visible="false">
+							<Label id="idLabelGLAccountName" text="{/#FCLM_CFBA_LIST_VIEW/GLAccountName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextGLAccountName" text="{GLAccountName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustGLAccountName" key="p13nData" value='\{"columnKey": "GLAccountName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnLiquidityItem" leadingProperty="LiquidityItem" sortProperty="LiquidityItem"
+							filterProperty="LiquidityItem" autoResizable="true" width="300px">
+							<Label id="idLabelLiquidityItem" text="{/#FCLM_CFBA_LIST_VIEW/LiquidityItem/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextLiquidityItem" text="{parts:[{path:'LiquidityItem'},{path:'LiquidityItemName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustLiquidityItem" key="p13nData" value='\{"columnKey": "LiquidityItem", "additionalProperty": "LiquidityItemName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnLiquidityItemName" leadingProperty="LiquidityItemName" sortProperty="LiquidityItemName"
+							filterProperty="LiquidityItemName" autoResizable="true" visible="false">
+							<Label id="idLabelLiquidityItemName" text="{/#FCLM_CFBA_LIST_VIEW/LiquidityItemName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextLiquidityItemName" text="{LiquidityItemName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustLiquidityItemName" key="p13nData" value='\{"columnKey": "LiquidityItemName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnPlanningLevel" leadingProperty="DisplayPlanningLevel" sortProperty="DisplayPlanningLevel"
+							filterProperty="DisplayPlanningLevel" autoResizable="true" width="300px">
+							<Label id="idLabelPlanningLevel" text="{/#FCLM_CFBA_LIST_VIEW/DisplayPlanningLevel/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextPlanningLevel"
+									text="{parts:[{path:'DisplayPlanningLevel'},{path:'PlanningLevelName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustPlanningLevel" key="p13nData"
+									value='\{"columnKey": "DisplayPlanningLevel", "additionalProperty": "PlanningLevelName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnPlanningLevelName" leadingProperty="PlanningLevelName" sortProperty="PlanningLevelName"
+							filterProperty="PlanningLevelName" autoResizable="true" visible="false">
+							<Label id="idLabelPlanningLevelName" text="{/#FCLM_CFBA_LIST_VIEW/PlanningLevelName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextPlanningLevelName" text="{PlanningLevelName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustPlanningLevelName" key="p13nData" value='\{"columnKey": "PlanningLevelName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCashPlanningGroup" leadingProperty="CashPlanningGroup" sortProperty="CashPlanningGroup"
+							filterProperty="CashPlanningGroup" autoResizable="true" width="300px">
+							<Label id="idLabelCashPlanningGroup" text="{/#FCLM_CFBA_LIST_VIEW/CashPlanningGroup/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCashPlanningGroup"
+									text="{parts:[{path:'CashPlanningGroup'},{path:'CashPlanningGroupName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCashPlanningGroup" key="p13nData"
+									value='\{"columnKey": "CashPlanningGroup", "additionalProperty": "CashPlanningGroupName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCashPlanningGroupName" leadingProperty="CashPlanningGroupName" sortProperty="CashPlanningGroupName"
+							filterProperty="CashPlanningGroupName" autoResizable="true" visible="false">
+							<Label id="idLabelCashPlanningGroupName" text="{/#FCLM_CFBA_LIST_VIEW/CashPlanningGroupName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCashPlanningGroupName" text="{CashPlanningGroupName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCashPlanningGroupName" key="p13nData" value='\{"columnKey": "CashPlanningGroupName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnBusinessPartner" leadingProperty="BusinessPartner" sortProperty="BusinessPartner"
+							filterProperty="BusinessPartner" autoResizable="true" width="175px">
+							<Label id="idLabelBusinessPartner" text="{/#FCLM_CFBA_LIST_VIEW/BusinessPartner/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextBusinessPartner" text="{BusinessPartner}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustBusinessPartner" key="p13nData" value='\{"columnKey": "BusinessPartner"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCustomer" leadingProperty="Customer" sortProperty="Customer" filterProperty="Customer"
+							autoResizable="true" width="400px">
+							<Label id="idLabelCustomer" text="{/#FCLM_CFBA_LIST_VIEW/Customer/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCustomer" text="{parts:[{path:'Customer'},{path:'CustomerName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCustomer" key="p13nData" value='\{"columnKey": "Customer", "additionalProperty": "CustomerName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCustomerName" leadingProperty="CustomerName" sortProperty="CustomerName" filterProperty="CustomerName"
+							autoResizable="true" visible="false">
+							<Label id="idLabelCustomerName" text="{/#FCLM_CFBA_LIST_VIEW/CustomerName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCustomerName" text="{CustomerName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCustomerName" key="p13nData" value='\{"columnKey": "CustomerName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnSupplier" leadingProperty="Supplier" sortProperty="Supplier" filterProperty="Supplier"
+							autoResizable="true" width="400px">
+							<Label id="idLabelSupplier" text="{/#FCLM_CFBA_LIST_VIEW/Supplier/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextSupplier" text="{parts:[{path:'Supplier'},{path:'SupplierName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustSupplier" key="p13nData" value='\{"columnKey": "Supplier", "additionalProperty": "SupplierName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnSupplierName" leadingProperty="SupplierName" sortProperty="SupplierName" filterProperty="SupplierName"
+							autoResizable="true" visible="false">
+							<Label id="idLabelSupplierName" text="{/#FCLM_CFBA_LIST_VIEW/SupplierName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextSupplierName" text="{SupplierName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustSupplierName" key="p13nData" value='\{"columnKey": "SupplierName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnTransactionCurrency" leadingProperty="TransactionCurrency" sortProperty="TransactionCurrency"
+							filterProperty="TransactionCurrency" visible="false" inResult="false" autoResizable="true">
+							<Label id="idLabelTransactionCurrency" text="{/#FCLM_CFBA_LIST_VIEW/TransactionCurrency/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextTransactionCurrency" text="{TransactionCurrency}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustTransactionCurrency" key="p13nData" value='\{"columnKey": "TransactionCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnAccountCurrency" leadingProperty="AccountCurrency" sortProperty="AccountCurrency"
+							filterProperty="AccountCurrency" visible="false" inResult="false" autoResizable="true">
+							<Label id="idLabelAccountCurrency" text="{/#FCLM_CFBA_LIST_VIEW/AccountCurrency/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextAccountCurrency" text="{AccountCurrency}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustAccountCurrency" key="p13nData" value='\{"columnKey": "AccountCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCompanyCodeCurrency" leadingProperty="CompanyCodeCurrency" sortProperty="CompanyCodeCurrency"
+							filterProperty="CompanyCodeCurrency" visible="false" inResult="false" autoResizable="true">
+							<Label id="idLabelCompanyCodeCurrency" text="{/#FCLM_CFBA_LIST_VIEW/CompanyCodeCurrency/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCompanyCodeCurrency" text="{CompanyCodeCurrency}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCompanyCodeCurrency" key="p13nData" value='\{"columnKey": "CompanyCodeCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnBankAccountNumber" leadingProperty="BankAccountNumber" sortProperty="BankAccountNumber"
+							filterProperty="BankAccountNumber" visible="false" autoResizable="true" width="300px">
+							<Label id="idLabelBankAccountNumber" text="{/#FCLM_CFBA_LIST_VIEW/BankAccountNumber/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextBankAccountNumber"
+									text="{parts:[{path:'BankAccountNumber'},{path:'BankAccountDescription'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustBankAccountNumber" key="p13nData"
+									value='\{"columnKey": "BankAccountNumber", "additionalProperty": "BankAccountDescription"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnBankAccountDescription" leadingProperty="BankAccountDescription" sortProperty="BankAccountDescription"
+							filterProperty="BankAccountDescription" autoResizable="true" visible="false">
+							<Label id="idLabelBankAccountDescription" text="{/#FCLM_CFBA_LIST_VIEW/BankAccountDescription/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextBankAccountDescription" text="{BankAccountDescription}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustBankAccountDescription" key="p13nData" value='\{"columnKey": "BankAccountDescription"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnPaymentMethod" leadingProperty="PaymentMethod" sortProperty="PaymentMethod"
+							filterProperty="PaymentMethod" visible="false" autoResizable="true" width="300px">
+							<Label id="idLabelPaymentMethod" text="{/#FCLM_CFBA_LIST_VIEW/PaymentMethod/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextPaymentMethod" text="{parts:[{path:'PaymentMethod'},{path:'PaymentMethodName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustPaymentMethod" key="p13nData" value='\{"columnKey": "PaymentMethod", "additionalProperty": "PaymentMethodName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnPaymentMethodName" leadingProperty="PaymentMethodName" sortProperty="PaymentMethodName"
+							filterProperty="PaymentMethodName" autoResizable="true" visible="false">
+							<Label id="idLabelPaymentMethodName" text="{/#FCLM_CFBA_LIST_VIEW/PaymentMethodName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextPaymentMethodName" text="{PaymentMethodName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustPaymentMethodName" key="p13nData" value='\{"columnKey": "PaymentMethodName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnAmountInCompanyCodeCurrency" leadingProperty="AmountInCompanyCodeCurrency"
+							autoResizable="true" summed="true" hAlign="Right" visible="false" width="250px">
+							<Label id="idLabelAmountInCompanyCodeCurrency" text="{/#FCLM_CFBA_LIST_VIEW/AmountInCompanyCodeCurrency/@sap:label}" textAlign="Right"></Label>
+							<table:template>
+								<Text id="idTextAmountInCompanyCodeCurrency"
+									text="{parts:[{path:'AmountInCompanyCodeCurrency'},{path:'CompanyCodeCurrency'},{path:'selRow>/Scaling'},{path:'selRow>/ViewTypeExt'}], formatter:'.Conversions.formatAmountWithBankAccountCurrency'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustAmountInCompanyCodeCurrency" key="p13nData" value='\{"columnKey": "AmountInCompanyCodeCurrency"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnPostingDate" leadingProperty="PostingDate" sortProperty="PostingDate" filterProperty="PostingDate"
+							filterType="sap.ui.model.type.Date" autoResizable="true" hAlign="Right" visible="false" width="125px">
+							<Label id="idLabelPostingDate" text="{/#FCLM_CFBA_LIST_VIEW/PostingDate/@sap:label}" textAlign="Right"></Label>
+							<table:template>
+								<Text id="idTextPostingDate" text="{parts:[{path:'PostingDate'}], formatter:'.Formatter.formatDate'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustPostingDate" key="p13nData" value='\{"columnKey": "PostingDate", "type": "date"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCertaintyLevel" leadingProperty="CertaintyLevel" sortProperty="CertaintyLevel"
+							filterProperty="CertaintyLevel" visible="false" autoResizable="true" width="300px">
+							<Label id="idLabelCertaintyLevel" text="{/#FCLM_CFBA_LIST_VIEW/CertaintyLevel/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCertaintyLevel" text="{parts:[{path:'CertaintyLevel'},{path:'CertaintyLevelName'}], formatter:'.Formatter.formatValueText'}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCertaintyLevel" key="p13nData" value='\{"columnKey": "CertaintyLevel", "additionalProperty": "CertaintyLevelName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+						<table:AnalyticalColumn id="idColumnCertaintyLevelName" leadingProperty="CertaintyLevelName" sortProperty="CertaintyLevelName"
+							filterProperty="CertaintyLevelName" autoResizable="true" visible="false">
+							<Label id="idLabelCertaintyLevelName" text="{/#FCLM_CFBA_LIST_VIEW/CertaintyLevelName/@sap:label}"></Label>
+							<table:template>
+								<Text id="idTextCertaintyLevelName" text="{CertaintyLevelName}"/>
+							</table:template>
+							<table:customData>
+								<core:CustomData id="idCustCertaintyLevelName" key="p13nData" value='\{"columnKey": "CertaintyLevelName"}'/>
+							</table:customData>
+						</table:AnalyticalColumn>
+					</table:columns>
+				</table:AnalyticalTable>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

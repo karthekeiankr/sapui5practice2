@@ -1,0 +1,98 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<!--<mvc:View 
+	controllerName="fin.cash.flow.analyzer.controller.CashConcentrationSim" 
+	xmlns="sap.m" 
+	xmlns:smartlink="sap.ui.comp.navpopover" 
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:semantic="sap.m.semantic" 
+	xmlns:sfb="sap.ui.comp.smartfilterbar" 
+	xmlns:table="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable" 
+	xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	class="finCentralTreereportReuse">
+	<semantic:FullscreenPage 
+		id="page" 
+		navButtonPress="onNavBack" 
+		showNavButton="true" 
+		title="{i18n>CPSimViewTitle}">
+			<semantic:content id="content">	
+				<core:Fragment fragmentName="fin.cash.flow.analyzer.view.fragment.CashConcentrationSim" type="XML"/>
+			</semantic:content>
+			
+			<semantic:sendEmailAction>
+				<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+			</semantic:sendEmailAction>
+			<semantic:shareInJamAction>
+				<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+			</semantic:shareInJamAction>
+			<semantic:saveAsTileAction>
+				<footerbar:AddBookmarkButton id="shareTile" />
+			</semantic:saveAsTileAction>
+	</semantic:FullscreenPage>
+</mvc:View>-->
+<mvc:View controllerName="fin.cash.flow.analyzer.controller.CashConcentrationSim" xmlns="sap.m" xmlns:smartlink="sap.ui.comp.navpopover"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:sfb="sap.ui.comp.smartfilterbar"
+	xmlns:table="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" class="finCentralTreereportReuse"
+	xmlns:variants="sap.ui.comp.smartvariants" xmlns:f="sap.f">
+	<f:DynamicPage id="page" preserveHeaderStateOnScroll="true" headerExpanded="{page>/headerExpanded}" showFooter="true" fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<variants:SmartVariantManagement id="CpsPageVariant" persistencyKey="CpsSFBPersistencyKey" showShare="true" showExecuteOnSelection="true"/>
+				</f:heading>
+				<f:actions>
+					<ToolbarSpacer id="_IDEGen_toolbarspacer2"/>
+					<Button id="CpsToggleHeaderButton" text="{path:'page>/headerExpanded', formatter:'.formatToggleButtonText'}" type="Transparent"
+						press="onToggleHeaderPressed"/>
+					<Button id="CpsShareButton" icon="sap-icon://action" tooltip="{i18n>SHARE_BUTTON}" type="Transparent" press="onShareButtonPressed"/>
+				</f:actions>
+				<f:snappedContent>
+					<Text id="CpsFilterText" wrapping="false"></Text>
+				</f:snappedContent>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<sfb:SmartFilterBar id="smartFilterBarItemForCPSim" width="auto" entitySet="FCLM_CFBA_CP_SIMSet" search="onSearchButtonPressed"
+						reset="doReload" persistencyKey="fin.cash.flow.analyzer.view.fragment.CashConcentrationSim" initialise="onInitSmartFilterBar"
+						filterBarExpanded="true" smartVariant="CpsPageVariant" useToolbar="false" showClearButton="false">
+						<sfb:controlConfiguration>
+							<sfb:ControlConfiguration key="ValueDate" id="valueDate" index="1" groupId="_Basic" hasValueHelpDialog="true" hasTypeAhead="true"
+								mandatory="mandatory" label="{/#FCLM_CFBA_CP_SIM/ValueDate/@sap:label}" visibleInAdvancedArea="true"
+								preventInitialDataFetchInValueHelpDialog="false"/>
+							<sfb:ControlConfiguration key="HierarchyName" id="hierNameFilter" index="2" groupId="_Basic" hasValueHelpDialog="true" hasTypeAhead="true"
+								mandatory="mandatory" label="{/#FCLM_CFBA_CP_SIM/HierarchyName/@sap:label}" visibleInAdvancedArea="true"
+								preventInitialDataFetchInValueHelpDialog="false"/>
+							<sfb:ControlConfiguration key="DisplayCurrency" id="dspCurrency" index="3" groupId="_Basic" hasValueHelpDialog="true" hasTypeAhead="true"
+								mandatory="mandatory" label="{/#FCLM_CFBA_CP_SIM/DisplayCurrency/@sap:label}" visibleInAdvancedArea="true"
+								preventInitialDataFetchInValueHelpDialog="false"/>
+							<sfb:ControlConfiguration key="ExchangeRateType" id="exRateTypeFilter" index="4" groupId="_Basic" hasValueHelpDialog="true"
+								hasTypeAhead="true" mandatory="mandatory" label="{/#FCLM_CFBA_CP_SIM/ExchangeRateType/@sap:label}" visibleInAdvancedArea="true"
+								preventInitialDataFetchInValueHelpDialog="false"/>
+						</sfb:controlConfiguration>
+						<sfb:customData>
+							<core:CustomData id="_IDEGen_customdata0" key="defaultDropDownDisplayBehaviour" value="descriptionOnly"/>
+							<core:CustomData id="_IDEGen_customdata1" key="defaultTokenDisplayBehaviour" value="idAndDescription"/>
+							<core:CustomData id="_IDEGen_customdata2" key="dateFormatSettings" value='\{"UTC":true,"style":"short"\}'/>
+						</sfb:customData>
+						<sfb:groupConfiguration>
+							<sfb:GroupConfiguration id="_IDEGen_groupconfiguration0" key="_Basic" label="{i18n>BSC_SEL_TITLE}"/>
+							<!--<sfb:GroupConfiguration key="MoreOptions" label="{i18n>DYN_SEL_TITLE}"/>-->
+						</sfb:groupConfiguration>
+						<sfb:layoutData>
+							<FlexItemData id="_IDEGen_flexitemdata0" shrinkFactor="0"/>
+						</sfb:layoutData>
+					</sfb:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+	</f:DynamicPage>
+</mvc:View>

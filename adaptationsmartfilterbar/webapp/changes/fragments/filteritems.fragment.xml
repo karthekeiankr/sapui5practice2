@@ -1,0 +1,31 @@
+<!-- <core:FragmentDefinition xmlns="sap.ui.core"
+                         xmlns:core="sap.ui.core"
+                         xmlns:smartfilterbar="sap.ui.comp.smartfilterbar">
+    
+   \
+            <smartfilterbar:ControlConfiguration key="CityName" 
+                                                 visibleInAdvancedArea="true" 
+                                                 label="Paying Co. Code"/>            
+            <smartfilterbar:ControlConfiguration key="CityName" 
+                                                 visibleInAdvancedArea="true" 
+                                                 label="Run On"/>           
+
+</core:FragmentDefinition> -->
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+		xmlns:core="sap.ui.core">
+	<!-- Price Filter-->
+	<smartfilterbar:ControlConfiguration key="CustomPriceFilter" 
+	label="Custom sf"
+							visibleInAdvancedArea="true" groupId="_BASIC">
+		<smartfilterbar:customControl>
+			<ComboBox id="CustomPriceFilter-combobox">
+				<core:Item id="CustomPriceFilterItem0" key="coimbatore" 
+						text="cbe"/>
+				<core:Item id="CustomPriceFilterItem3" key="banglore" 
+						text="banglore"/>
+			</ComboBox>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration> 
+</core:FragmentDefinition>	

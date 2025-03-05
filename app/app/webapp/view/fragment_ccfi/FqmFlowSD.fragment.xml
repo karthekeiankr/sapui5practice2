@@ -1,0 +1,30 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:ca="sap.ca.ui.charts"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:ushell="sap.ushell.ui"
+	xmlns:ca.ui="sap.ca.ui" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"> 
+			<f:FormContainer>
+				<f:title>
+					<Title xmlns="sap.ui.core" text="{i18n>SD_HEADER_TABLE}"
+						icon="" level="Auto" emphasized="false" />
+				</f:title>
+				<f:formElements> 
+					<f:FormElement label="{/#PaymentDetailTransData/OriginSystem/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/OriginSystem}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/OriginDocumentId/@sap:label}">
+						<f:fields>
+							<Link text="{Transaction>/OriginDocument}" press="handleSDMMPress"
+								wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<core:ExtensionPoint name="extFQMFlowDetail" />
+				</f:formElements>
+			</f:FormContainer>
+</core:FragmentDefinition>

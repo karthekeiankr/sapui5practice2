@@ -1,0 +1,36 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover id="_IDEGen_popover0"
+		title="{i18n>DISPLAY_SELECTION}"
+		class="sapUiContentPadding"
+		placement="Bottom"
+			initialFocus="popok">
+		<footer>
+			<Toolbar id="_IDEGen_toolbar0">
+				<ToolbarSpacer id="_IDEGen_toolbarspacer5"/>
+				<Button
+					id="popok"
+					text="{i18n>OK}"
+					press="onPopOK" />
+				<Button
+					id="popcancel"
+					text="{i18n>CANCEL}"
+					press="onPopCancel" />					
+			</Toolbar>
+		</footer>
+			<RadioButtonGroup id="rbg-viewType" columns="1" selectedIndex="1" class="sapUiMediumMarginBottom">
+				<buttons>
+					<RadioButton id="rb-cdisplay" text="{i18n>CUMULATE_DISPLAY}"/>
+					<RadioButton id="rb-ddisplay" text="{i18n>DELTA_DISPLAY}" />
+					<!-- <RadioButton id="rb-ddisplaywb" text="{i18n>DELTA_BALANCE_DISPLAY}"/> -->
+				</buttons>
+			</RadioButtonGroup>
+	</Popover>
+
+</core:FragmentDefinition>

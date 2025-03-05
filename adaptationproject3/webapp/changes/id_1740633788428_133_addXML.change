@@ -1,0 +1,37 @@
+{
+  "fileName": "id_1740633788428_133_addXML",
+  "fileType": "change",
+  "changeType": "addXML",
+  "moduleName": "customer/adaptationproject3/changes/fragments/filterbar.fragment.xml",
+  "reference": "customer.adaptationproject3",
+  "packageName": "$TMP",
+  "content": {
+    "targetAggregation": "controlConfiguration",
+    "index": 9,
+    "fragmentPath": "fragments/filterbar.fragment.xml"
+  },
+  "selector": {
+    "id": "mdm.md.customer.manage::sap.suite.ui.generic.template.ListReport.view.ListReport::C_BusinessPartnerCustomer--listReportFilter",
+    "idIsLocal": false
+  },
+  "layer": "CUSTOMER_BASE",
+  "texts": {},
+  "namespace": "apps/mdm.md.customer.manage/adapt/customer.adaptationproject3/changes/",
+  "projectId": "customer.adaptationproject3",
+  "creation": "2025-02-27T05:23:57.747Z",
+  "originalLanguage": "EN",
+  "support": {
+    "generator": "@sap-ux/control-property-editor",
+    "service": "",
+    "user": "",
+    "sapui5Version": "1.84.49",
+    "sourceChangeFileName": "",
+    "compositeCommand": "",
+    "command": "addXML"
+  },
+  "oDataInformation": {},
+  "dependentSelector": {},
+  "jsOnly": false,
+  "variantReference": "",
+  "appDescriptorChange": false
+}

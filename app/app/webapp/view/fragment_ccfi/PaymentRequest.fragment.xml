@@ -1,0 +1,84 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:ca="sap.ca.ui.charts"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:ushell="sap.ushell.ui"
+	xmlns:ca.ui="sap.ca.ui" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"> 
+			<f:FormContainer>
+				<f:title>
+					<Title xmlns="sap.ui.core" text="{i18n>PR_HEADER_TABLE}"
+						icon="" level="Auto" emphasized="false" />
+				</f:title>
+				<f:formElements> 
+					<f:FormElement label="{i18n>PAYMENT_REQUEST_NUMBER}">
+						<f:fields>
+							<Link text="{Transaction>/OriginDocumentId}" press="handlePaymentRequestPress"
+								wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestOrigin/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestOrigin}" 
+							description="test" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestOriginText}" 
+							description="test" wrapping="true" />
+						</f:fields>
+					</f:FormElement>  
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestAccType/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestAccType}" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestAccTypeText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestCompanyCode/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestCompanyCode}" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestComCodeText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestSendComCode/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestSendComCode}" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestSendComCodeText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/BusinessPartner/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/BusinessPartner}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/AccountingDocument/@sap:label}">
+						<f:fields>
+							<Link text="{Transaction>/AccountingDocument}" wrapping="true" width="100px"
+						press="handleDocumentPress" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestOffComCode/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestOffComCode}" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestOffComCodeText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestOffAcc/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestOffAcc}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestOffValueDate/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestOffValueDate}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{/#PaymentDetailTransData/PaymentRequestOffPlanLevel/@sap:label}">
+						<f:fields>
+							<Text text="{Transaction>/PaymentRequestOffPlanLevel}" wrapping="true" />
+							<Text text="{Transaction>/PaymentRequestOffPlanLevelText}" wrapping="true" />
+						</f:fields>
+					</f:FormElement>
+					<core:ExtensionPoint name="extPaymentRequestDetail" />
+				</f:formElements>
+			</f:FormContainer>
+</core:FragmentDefinition>

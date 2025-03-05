@@ -1,0 +1,61 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+	
+	<Dialog id="_IDEGen_dialog0" title="{i18n>DsplyHS}" class="sapUiContentPadding">
+		<l:VerticalLayout id="_IDEGen_verticallayout0" width="100%">
+			<l:content>
+				<VBox id="_IDEGen_vbox0" class="detailInfoForm">
+					<FlexBox id="_IDEGen_flexbox0" height='4px'/>
+					<HBox id="_IDEGen_hbox0">
+						<VBox id="_IDEGen_vbox1" width = '200px' >
+							<Label id="_IDEGen_label0" text="{i18n>LHHID}:" labelFor="fin.cash.fa.bl-id"/> 
+						</VBox>
+						<VBox id="_IDEGen_vbox2">
+							<Input
+								id="fin.cash.fa.bl-id"
+								type="Text"
+								placeholder="{i18n>ELIH}"
+								showSuggestion="false"
+								showValueHelp="true"
+								valueHelpOnly = "true"
+								enabled = "true"
+								valueHelpRequest="handleLQValueHelp">
+							</Input>
+						</VBox>
+					</HBox>
+					<HBox id= "fin.cash.fa.bl-dc" >
+						<VBox id="_IDEGen_vbox3" width = '200px' >
+							<Label id="_IDEGen_label1" text="{i18n>DisplayCurrency}:" labelFor="fin.cash.fa.bl-displaycurrency"/> 
+						</VBox>
+						<VBox id="_IDEGen_vbox4">
+							<Input
+								id="fin.cash.fa.bl-displaycurrency"
+								type="Text"
+								placeholder="{i18n>InputDisplayCurrency}"
+								showSuggestion="false"
+								showValueHelp="true"
+								enabled = "false"
+								valueHelpOnly = "true"
+								valueHelpRequest="handleDsplyCrcyValueHelp">
+							</Input>
+						</VBox>
+					</HBox>
+				</VBox>
+      		</l:content>
+		</l:VerticalLayout>
+    	<beginButton>
+      		<Button id = "handleIntrNavigationBtn" text="{i18n>OK}" press="handleIntrNavigation" />
+    	</beginButton>
+    	<endButton>
+    		<Button id="_IDEGen_button0" text="{i18n>CANCEL}" press="_cancelSubmit" />
+    	</endButton>
+  	</Dialog>
+
+</core:FragmentDefinition>

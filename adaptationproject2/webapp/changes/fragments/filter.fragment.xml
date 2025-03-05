@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.ui.comp.smartfilterbar" xmlns:m="sap.m">
+    <ControlConfiguration
+        id="customFilterConfiguse"
+        key="customFilter"
+        label="My Custom Filter"
+        visibleInAdvancedArea="true">
+        <customControl>
+            <m:ComboBox id="customFilterComboBoxuse">
+                <m:items>
+                    <core:Item id="customFilterComboBoxItem0use" key="WXYZ" text="coimbatore"/>
+                    <core:Item id="customFilterComboBoxItem1use" key="banglore" text="banglore"/>
+                </m:items>
+            </m:ComboBox>
+        </customControl>
+    </ControlConfiguration>
+</core:FragmentDefinition>

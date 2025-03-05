@@ -1,0 +1,119 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="_IDEGen_dialog0" title="{i18n>SETTINGS}" class="sapUiPopupWithPadding">
+		<l:VerticalLayout id="_IDEGen_verticallayout0" width="100%">
+			<l:content>
+				<VBox id="_IDEGen_vbox0" class="detailInfoForm">
+					<HBox id="_IDEGen_hbox0">
+						<Label id="_IDEGen_label0" text="{i18n>IsBankCurrency}:" labelFor="DB_IsBankCurrency"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox1">
+						<RadioButtonGroup id="DB_IsBankCurrency" columns="1">
+							<buttons>
+								<RadioButton id="_IDEGen_radiobutton0" text="{i18n>DB_TransactionCurrency}"/>
+								<RadioButton id="_IDEGen_radiobutton1" text="{i18n>DB_BankAccountCurrency}"/>
+								<RadioButton id="_IDEGen_radiobutton6" text="{i18n>DB_LocalCurrency}"/>
+							</buttons>
+						</RadioButtonGroup>
+					</HBox>
+					<HBox id="_IDEGen_hbox2">
+						<Label id="_IDEGen_label1" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox3">
+						<Label id="_IDEGen_label2" text="{i18n>DEFAULT_VIEW}:" labelFor="DefaultView"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox4">
+						<RadioButtonGroup id="DefaultView" columns="1">
+							<buttons>
+								<RadioButton id="_IDEGen_radiobutton2" text="{i18n>CUMULATE_DISPLAY}"/>
+								<RadioButton id="_IDEGen_radiobutton3" text="{i18n>DELTA_DISPLAY}"/>
+							</buttons>
+						</RadioButtonGroup>
+					</HBox>
+					<HBox id="_IDEGen_hbox5">
+						<Label id="_IDEGen_label3" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox6">
+						<Label id="_IDEGen_label4" text="{i18n>NEWShowWorkingDays}:" labelFor="WorkingRadioBtn"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox7">
+						<RadioButtonGroup id="WorkingRadioBtn" columns="1" select="handleWorkingdaysSelected">
+							<buttons>
+								<RadioButton id="_IDEGen_radiobutton4" text="{i18n>NEWNonWorkingDay}"/>
+								<RadioButton id="_IDEGen_radiobutton5" text="{i18n>NEWWorkingDay}"/>
+							</buttons>
+						</RadioButtonGroup>
+					</HBox>
+					<HBox id="_IDEGen_hbox8">
+						<VBox id="_IDEGen_vbox1" width='32px'></VBox>
+						<VBox id="_IDEGen_vbox2">
+							<HBox id="_IDEGen_hbox9">
+								<Label id="_IDEGen_label5" text="{i18n>calandarMsg}:" labelFor="FactoryCalendarId"/>
+							</HBox>
+							<HBox id="_IDEGen_hbox10">
+								<Input id="FactoryCalendarId" type="Text" showSuggestion="false" showValueHelp="true" valueHelpOnly="true"
+									valueHelpRequest="handleCalandarValueHelp" enabled="false" width="368px"></Input>
+							</HBox>
+							<HBox id="_IDEGen_hbox11">
+								<SegmentedButton id="PreviousFlag">
+									<items>
+										<SegmentedButtonItem width="184px" id="fin.cash.fa.main-np" text="{i18n>NEWNextPeriodBtn}"/>
+										<SegmentedButtonItem width="184px" id="fin.cash.fa.main-pp" text="{i18n>NEWPreviousPeriodBtn}"/>
+									</items>
+								</SegmentedButton>
+							</HBox>
+						</VBox>
+					</HBox>
+					<HBox id="_IDEGen_hbox12">
+						<Label id="_IDEGen_label6" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox13">
+						<Label id="_IDEGen_label7" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox14">
+						<Label id="_IDEGen_label8" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox15">
+						<Label id="_IDEGen_label9" text="{i18n>ExpendLevel}:" labelFor="SettingExpendLevel"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox16">
+						<Input id="SettingExpendLevel" placeholder="{i18n>ExpendLevelPL}" type="Text" enabled="true" liveChange="checkExpendLevel" width="400px"></Input>
+					</HBox>
+					<HBox id="_IDEGen_hbox17">
+						<Label id="_IDEGen_label10" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox18">
+						<Label id="_IDEGen_label11" text="{i18n>DisplayCurrencyLLQ}:" labelFor="SettingDisplayCurrency"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox19">
+						<Input id="SettingDisplayCurrency" type="Text" showSuggestion="false" showValueHelp="true" valueHelpOnly="true"
+							valueHelpRequest="handleUsrDsplyCrcyValueHelp" width="400px"></Input>
+					</HBox>
+					<HBox id="_IDEGen_hbox20">
+						<Label id="_IDEGen_label12" text=""/>
+					</HBox>
+					<HBox id="_IDEGen_hbox21">
+						<Label id="_IDEGen_label13" text="{i18n>SCALING}:" labelFor="Scaling"/>
+					</HBox>
+					<HBox id="_IDEGen_hbox22">
+						<Select id="Scaling" width="400px">
+							<core:Item id="_IDEGen_item0" key="0" text="{i18n>SCALING_STANDARD}"></core:Item>
+							<core:Item id="_IDEGen_item1" key="1" text="{i18n>SCALING_SHORT}"></core:Item>
+							<core:Item id="_IDEGen_item2" key="2" text="{i18n>SCALING_LONG}"></core:Item>
+						</Select>
+					</HBox>
+				</VBox>
+			</l:content>
+		</l:VerticalLayout>
+		<beginButton>
+			<Button id="_IDEGen_button0" text="{i18n>OK}" press="onOK"/>
+		</beginButton>
+		<endButton>
+			<Button id="_IDEGen_button1" text="{i18n>CANCEL}" press="onCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
