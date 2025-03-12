@@ -1,4 +1,0 @@
-<!-- Use stable and unique IDs!-->
-<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m'>
-    <Button text="Open Custom Page" press="onOpenCustom"/>
-</core:FragmentDefinition>

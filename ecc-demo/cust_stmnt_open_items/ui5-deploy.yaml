@@ -1,0 +1,24 @@
+specVersion: "3.1"
+metadata:
+  name: custstmntopenitems
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DMIX
+          url: https://my415723.s4hana.cloud.sap
+          client: "100"
+        app:
+          name: Z_CUSTSTMOPNITM
+          description: Customer Statement Open Item
+          package: ZFIORI
+          transport: KOEK900506
+        exclude:
+          - /test/

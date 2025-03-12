@@ -1,0 +1,311 @@
+<mvc:View controllerName="dmixmtable.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+     xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:t="sap.ui.table"
+    >
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <f:DynamicPage id="dynamicPageContainer">
+                <f:header>
+                    <f:DynamicPageHeader id="dynamicPageHeader">
+                        <f:content>
+                            <fb:FilterBar id="filterBar" useToolbar="true" search="onSearch">
+                                <fb:filterGroupItems>
+                                    <fb:FilterGroupItem id="companyCodeFilter" mandatory="true" label="CompanyCode" groupName="companycode" name="Company Code" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input id="companyCodeItem"  
+                                                showValueHelp="true" 
+                                                valueHelpRequest="onCompanyCodeValueHelpRequest" 
+                                                width="35%"/>
+                                        </fb:control>
+                                    </fb:FilterGroupItem>
+                                    <fb:FilterGroupItem id="fiscalYearFilter" label="Fiscal Year" groupName="fiscalYear" name="Fiscal Year" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input id="fiscalYearItem"  
+                                                showValueHelp="true" 
+                                                width="35%"/>
+                                        </fb:control>
+                                    </fb:FilterGroupItem>
+                                    <fb:FilterGroupItem id="ValidityStartDateFilter" mandatory="true" label="Validity Start Date" groupName="ValidityStartDate" name="ValidityStartDate" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <DateRangeSelection id="docDateItem"
+                                                change="handleChange"
+                                                value= "{
+                                                    'type': 'sap.ui.model.type.DateInterval',
+                                                    'parts': [
+                                                        {
+                                                            'type': 'sap.ui.model.type.Date',
+                                                            'path': '/oDRS2Start'
+                                                        },
+                                                        {
+                                                            'type': 'sap.ui.model.type.Date',
+                                                            'path': '/oDRS2End'
+                                                        }
+                                                    ]
+                                                }"
+                                                required="true"/>
+                                        </fb:control>
+                                    </fb:FilterGroupItem>
+                                    <fb:FilterGroupItem id="costcentreFilter" mandatory="true" label="CostCentre" groupName="costcentre" name="CostCentre" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input id="costcentreItem"  
+                                                showValueHelp="true" 
+                                                valueHelpRequest="onCustomerValueHelpRequest" 
+                                                width="35%"/>
+                                        </fb:control>
+                                    </fb:FilterGroupItem>
+                                </fb:filterGroupItems>
+                            </fb:FilterBar>
+                        </f:content>
+                    </f:DynamicPageHeader>
+                </f:header>
+                <f:content>
+                     <ScrollContainer width="100%" height="500px" horizontal="true" vertical="true">
+                        <VBox width="100%" height="100%">
+
+                        <Toolbar>
+                            <ToolbarSpacer/>    
+                                <Title id="dynamicheadertext" text="Statement" />
+                            <ToolbarSpacer/>
+                        </Toolbar>
+                        <OverflowToolbar >
+                            <ToolbarSpacer/>
+                            <MenuButton id="downloadButton"
+                                    icon="sap-icon://download"
+                                    type="Transparent">
+                                <menu>
+                                    <Menu>
+                                        <items>
+                                            <MenuItem text="Export as XLSX" press="downloadExcel"/>
+                                        </items>
+                                    </Menu>
+                                </menu>
+                            </MenuButton>
+                        </OverflowToolbar>
+                      <Table id="equipmentcostcentre"
+    items="{ path:'/ZCDS_SelectionFields' }"
+    growing="true"
+    growingScrollToLoad="true"
+    mode="None"
+     width="2000px">
+
+    <columns>
+        <Column width="auto">
+            <Text text="CostCentre"/>
+        </Column>
+        <Column width="auto">
+            <Text text="CostCentre Description"/>
+        </Column>
+        <Column width="auto">
+            <Text text="Diesel Amount"/>
+        </Column>
+       <Column width="auto">
+            <Text text="GLNQTY"/>
+        </Column>
+       <Column width="auto">
+            <Text text="KMQTY"/>
+        </Column>
+        <Column width="auto">
+            <Text text="Tyre Amount"/>
+        </Column>
+       <Column width="auto">
+            <Text text="Maintenance Amount"/>
+        </Column>
+      <Column width="auto">
+            <Text text="Salary Amount"/>
+        </Column>
+      <Column width="auto">
+            <Text text="Fees Amount"/>
+        </Column>
+      <Column width="auto">
+            <Text text="Insurance Amount"/>
+        </Column>
+       <Column width="auto">
+            <Text text="Other Amount"/>
+        </Column>
+       <Column width="auto">
+            <Text text="CUBMTR"/>
+        </Column>
+     <Column width="auto">
+            <Text text="DieselPerKm"/>
+        </Column>
+       <Column width="auto">
+            <Text text="TyrePerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="MaintenancePerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="SalaryPerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="FeesPerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="InsurancePerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="OthersPerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="TotalCostPerKm"/>
+        </Column>
+        <Column width="auto">
+            <Text text="TRIPS"/>
+        </Column>
+        <Column width="auto">
+            <Text text="AveragePerLoad"/>
+        </Column>
+    </columns>
+
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{Id}"/>
+                <Text text="{MaterialName}"/>
+                <Text text="{MaterialDes}"/>
+                <Text text="{Quantity}"/>
+                <Text text="{City}"/>
+                <Text text="{Place}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+                <Text text="{Id1}"/>
+                <Text text="{Id}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
+ 
+<!-- Totals Table (Separate) -->
+
+<Table id="totalsTable" 
+    width="2000px"
+    class="sapUiSmallMarginTop sapUiNoContentPadding">   
+    <columns>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+       <Column>
+            <Text text=" "/>
+        </Column>
+       <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+        <Column>
+            <Text text=" "/>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+            <Text text="TOTAL " class="totalText" />
+            <Text text=" " class="totalText" />
+    <Text text="{totalsModel>/DieselAmount}" class="totalText" />
+    <Text text="{totalsModel>/GLNQTY}" class="totalText" />
+    <Text text="{totalsModel>/KMQTY}" class="totalText" />
+    <Text text="{totalsModel>/TyreAmount}" class="totalText" />
+    <Text text="{totalsModel>/MaintenanceAmount}" class="totalText" />
+    <Text text="{totalsModel>/SalaryAmount}" class="totalText" />
+    <Text text="{totalsModel>/FeesAmount}" class="totalText" />
+    <Text text="{totalsModel>/InsuranceAmount}" class="totalText" />
+    <Text text="{totalsModel>/OtherAmount}" class="totalText" />
+    <Text text="{totalsModel>/CUBMTR}" class="totalText" />
+    <Text text="{totalsModel>/DieselPerKm}" class="totalText" />
+    <Text text="{totalsModel>/TyrePerKm}" class="totalText" />
+    <Text text="{totalsModel>/MaintenancePerKm}" class="totalText" />
+    <Text text="{totalsModel>/SalaryPerKm}" class="totalText" />
+    <Text text="{totalsModel>/FeesPerKm}" class="totalText" />
+    <Text text="{totalsModel>/InsurancePerKm}" class="totalText" />
+    <Text text="{totalsModel>/OthersPerKm}" class="totalText" />
+    <Text text="{totalsModel>/TotalCostPerKm}" class="totalText" />
+    <Text text="{totalsModel>/TRIPS}" class="totalText" />
+    <Text text="{totalsModel>/SalaryEfficiency}" class="totalText" />     
+            </cells>
+           
+        </ColumnListItem>
+    </items>
+</Table>
+
+                        <OverflowToolbar>
+        <ToolbarSpacer/>
+     
+  <ToolbarSpacer/>
+    </OverflowToolbar>
+                            </VBox>
+                    </ScrollContainer>
+                </f:content>
+            </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>
